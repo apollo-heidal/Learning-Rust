@@ -1,5 +1,0 @@
-[workspace]
-members = [
-    "Ch1-HelloWorld",
-    "Ch2-GuessingGame"
-]

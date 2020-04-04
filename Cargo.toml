@@ -1,0 +1,20 @@
+[package]
+name = "rust_book"
+version = "0.1.0"
+authors = ["Apollo <apolloheidal@gmail.com>"]
+edition = "2018"
+#default-run = "hello_world"
+
+[[bin]]
+name = "hello_world"
+path = "Ch1-HelloWorld/src/main.rs"
+
+[dependencies]
+
+[workspace]
+members = [
+    "Ch1-HelloWorld",
+    "Ch2-GuessingGame"
+]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
