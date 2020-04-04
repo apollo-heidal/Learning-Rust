@@ -1,4 +1,5 @@
 [workspace]
 members = [
-    "Ch2-guessing_game/",
+    "Ch1-HelloWorld",
+    "Ch2-GuessingGame"
 ]
