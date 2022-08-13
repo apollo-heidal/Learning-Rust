@@ -1,20 +1,37 @@
-use std::io;
+use colored::*;
 use rand::Rng;
+use std::cmp::Ordering;
+use std::io;
 
 fn main() {
     println!("Guess the number!");
 
-    let secret_number = rand::thread_rng().gen_range(1, 101);
-
+    let secret_number = rand::thread_rng().gen_range(1, 100);
     println!("The secret number is {}", secret_number);
 
-    println!("Please input your guess.");
+    loop {
+        println!("Please input your guess");
 
-    let mut guess = String::new(); 
-    // can also use String::with_capacity(); to explicitly allocate memory
+        let mut guess = String::new(); // String::with_capacity() also valid
+        io::stdin()
+            .read_line(&mut guess)
+            .expect("Failed to read line");
+        println!("Your guess: {}", guess);
 
-    io::stdin().read_line(&mut guess)
-        .expect("Failed to read line");
-
-    println!("Your guess: {}", guess);
+        let guess: u32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => {
+                println!("{}", "Please enter a number".purple());
+                continue;
+            }
+        };
+        match guess.cmp(&secret_number) {
+            Ordering::Less => println!("{}", "Too low!".red()),
+            Ordering::Greater => println!("{}", "Too high!".red()),
+            Ordering::Equal => {
+                println!("{}", "You win!".green());
+                break;
+            }
+        }
+    }
 }
